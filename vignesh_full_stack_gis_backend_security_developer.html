@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vignesh – Full Stack, GIS & Backend Security Developer</title>
+<meta name="description" content="Full Stack & Systems Developer in Chennai building secure workforce management, GIS mapping, and backend infrastructure with React, Node.js, and PostgreSQL.">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0f17;
+  --panel: #131a26;
+  --panel-hover: #192436;
+  --ink: #eaeff6;
+  --muted: #94a3b8;
+  --line: #222f42;
+  --accent: #6ea8ff;
+  --accent-glow: rgba(110, 168, 255, 0.15);
+  --sec-accent: #34d399;
+  --sec-glow: rgba(52, 211, 153, 0.12);
+  --accent-ink: #0b0f17;
+  --head: "Sora", "Trebuchet MS", system-ui, sans-serif;
+  --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f7fa;
+  --panel: #ffffff;
+  --panel-hover: #f8fafc;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #cbd5e1;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.1);
+  --sec-accent: #059669;
+  --sec-glow: rgba(5, 150, 105, 0.1);
+  --accent-ink: #ffffff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f7fa;
+    --panel: #ffffff;
+    --panel-hover: #f8fafc;
+    --ink: #0f172a;
+    --muted: #475569;
+    --line: #cbd5e1;
+    --accent: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.1);
+    --sec-accent: #059669;
+    --sec-glow: rgba(5, 150, 105, 0.1);
+    --accent-ink: #ffffff;
+    color-scheme: light;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 4.5rem; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.05rem/1.65 var(--body);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 2.5px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1.2rem, 4vw, 2.2rem); }
+
+/* Sticky Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+.logo { font: 600 1.15rem var(--mono); text-decoration: none; letter-spacing: -0.02em; }
+.logo b { color: var(--accent); }
+.links { display: flex; align-items: center; gap: 1.3rem; flex-wrap: wrap; }
+.links a { color: var(--muted); text-decoration: none; font-size: 0.94rem; font-weight: 500; transition: color 0.2s; }
+.links a:hover { color: var(--ink); }
+.pill {
+  border: 1.5px solid var(--accent);
+  color: var(--accent) !important;
+  padding: 0.32rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.pill:hover { background: var(--accent); color: var(--accent-ink) !important; }
+.tgl {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.tgl:hover { border-color: var(--accent); background: var(--panel); }
+
+/* Hero Header */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+#net { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: auto; }
+.hero .wrap {
+  position: relative;
+  pointer-events: none;
+  padding-top: clamp(4.5rem, 11vw, 8rem);
+  padding-bottom: clamp(4rem, 9vw, 6.5rem);
+}
+.hero a, .hero button, .hero .btns { pointer-events: auto; }
+.tag {
+  font: 500 0.9rem var(--mono);
+  color: var(--accent);
+  margin: 0 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.tag-badge {
+  background: var(--sec-glow);
+  color: var(--sec-accent);
+  border: 1px solid color-mix(in srgb, var(--sec-accent) 30%, transparent);
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+}
+h1 {
+  font: 800 clamp(2.8rem, 11vw, 7.8rem)/0.96 var(--head);
+  letter-spacing: -0.04em;
+  margin: 0 0 1.4rem;
+}
+h1 .c {
+  display: inline-block;
+  transform: translateY(35%);
+  opacity: 0;
+  animation: in 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i) * 50ms + 80ms);
+}
+@keyframes in { to { transform: none; opacity: 1; } }
+
+.sub { font-size: clamp(1.1rem, 2.2vw, 1.45rem); max-width: 33em; margin: 0 0 2rem; color: var(--muted); }
+.sub strong { color: var(--ink); font-weight: 600; }
+.btns { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1.5px solid var(--line);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.btn.p { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.into { margin-top: 2.8rem; font: 400 0.9rem var(--mono); color: var(--muted); display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.into span { color: var(--ink); display: flex; align-items: center; gap: 0.35rem; }
+.into span::before { content: "•"; color: var(--accent); }
+
+/* Common Sections */
+section { position: relative; padding: clamp(3.5rem, 7vw, 5.5rem) 0; border-bottom: 1px solid var(--line); }
+.n { font: 500 0.88rem var(--mono); color: var(--accent); margin: 0 0 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; }
+h2 { font: 800 clamp(1.8rem, 4vw, 2.8rem)/1.1 var(--head); letter-spacing: -0.025em; margin: 0 0 1.5rem; max-width: 18em; }
+h3 { font: 700 1.3rem/1.25 var(--head); margin: 0 0 0.5rem; }
+
+/* Motion canvas overlay for sections */
+.section-motion-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 0;
+}
+section .wrap { position: relative; z-index: 1; }
+
+/* Grid Layouts */
+.two { display: grid; grid-template-columns: 1.25fr 1fr; gap: 2.5rem; }
+.two p { margin: 0 0 1rem; color: var(--muted); }
+.two p strong { color: var(--ink); }
+
+pre {
+  margin: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.2rem 1.3rem;
+  font: 400 0.88rem/1.7 var(--mono);
+  color: var(--accent);
+  overflow-x: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.chips li {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 0.28rem 0.85rem;
+  font: 400 0.82rem var(--mono);
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s;
+}
+.chips li.sec {
+  border-color: color-mix(in srgb, var(--sec-accent) 40%, var(--line));
+  background: var(--sec-glow);
+  color: var(--sec-accent);
+}
+
+/* Security Grid Cards */
+.sec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; margin-top: 2rem; }
+.sec-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.sec-card:hover { border-color: var(--sec-accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+.sec-card .icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  background: var(--sec-glow);
+  color: var(--sec-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.95rem var(--mono);
+  margin-bottom: 1rem;
+  border: 1px solid color-mix(in srgb, var(--sec-accent) 30%, transparent);
+}
+.sec-card h4 { font: 700 1.1rem var(--head); margin: 0 0 0.5rem; }
+.sec-card p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+
+/* Interactive Roadmap Styles */
+.roadmap-tabs { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.rm-tab {
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  color: var(--muted);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font: 600 0.9rem var(--mono);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.rm-tab:hover, .rm-tab.active {
+  color: var(--ink);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+}
+.rm-tab.active { box-shadow: 0 0 12px var(--accent-glow); }
+
+.roadmap-flow { display: flex; flex-direction: column; gap: 1.5rem; position: relative; }
+.roadmap-flow::before {
+  content: "";
+  position: absolute;
+  left: 1.8rem;
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--sec-accent) 50%, var(--line) 100%);
+}
+.rm-card {
+  position: relative;
+  margin-left: 3.5rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.rm-card::before {
+  content: "";
+  position: absolute;
+  left: -2.35rem;
+  top: 1.8rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
+  transition: all 0.25s;
+}
+.rm-card.future::before { border-color: var(--sec-accent); }
+.rm-card:hover, .rm-card.open {
+  border-color: var(--accent);
+  transform: translateX(4px);
+  background: var(--panel-hover);
+}
+.rm-card:hover::before, .rm-card.open::before {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.rm-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.rm-phase { font: 600 0.85rem var(--mono); color: var(--accent); }
+.rm-badge {
+  font: 500 0.75rem var(--mono);
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+.rm-card.future .rm-phase, .rm-card.future .rm-badge { color: var(--sec-accent); }
+.rm-title { font: 700 1.25rem var(--head); margin: 0.4rem 0 0.5rem; }
+.rm-summary { color: var(--muted); font-size: 0.98rem; margin: 0; }
+.rm-details {
+  display: none;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed var(--line);
+  animation: fadeIn 0.3s ease-in-out;
+}
+.rm-card.open .rm-details { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.rm-details h5 { font: 600 0.92rem var(--mono); color: var(--ink); margin: 0 0 0.5rem; }
+.rm-details ul { margin: 0 0 1rem; padding-left: 1.2rem; color: var(--muted); font-size: 0.93rem; }
+
+/* Project Cards */
+.proj {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 1rem 1.8rem;
+  padding: 2.2rem 0;
+  border-top: 1px solid var(--line);
+  transition: background 0.25s;
+}
+.proj:hover { background: var(--panel-hover); }
+.proj .k { font: 500 0.88rem var(--mono); color: var(--accent); }
+.proj p { margin: 0.4rem 0 0.9rem; max-width: 44em; color: var(--muted); }
+.proj ul { margin: 0.6rem 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.98rem; }
+.proj ul li { margin-bottom: 0.35rem; }
+.proj a.l {
+  color: var(--accent);
+  margin-right: 1.3rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.proj a.l:hover { text-decoration: underline; }
+
+/* Timeline */
+.tl { margin: 0; padding: 0; list-style: none; }
+.tl li {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 0.5rem 2rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--line);
+}
+.tl .w { font: 500 0.9rem var(--mono); color: var(--accent); }
+.tl p { margin: 0.3rem 0 0; color: var(--muted); }
+
+/* CTA Footer */
+.cta h2 { max-width: 14em; }
+footer { padding: 2.2rem 0 2.8rem; color: var(--muted); font: 400 0.88rem var(--mono); }
+footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+/* Scroll Reveal */
+.js .rv { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.js .rv.in { opacity: 1; transform: none; }
+
+@media (max-width: 780px) {
+  .two { grid-template-columns: 1fr; gap: 1.8rem; }
+  .proj { grid-template-columns: 1fr; }
+  .tl li { grid-template-columns: 1fr; }
+  .roadmap-flow::before { left: 0.9rem; }
+  .rm-card { margin-left: 2.2rem; padding: 1.2rem; }
+  .rm-card::before { left: -1.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1 .c { animation: none; transform: none; opacity: 1; }
+  .js .rv { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Vignesh, back to top">vm<b>_</b>sec</a>
+    <nav class="links" aria-label="Main Navigation">
+      <a href="#intro">Intro</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#security">Backend Security</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="pill" href="mailto:vigneshv0608@gmail.com">Open to work</a>
+      <button class="tgl" id="tgl" type="button" aria-label="Toggle Light/Dark Theme">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero Section with Canvas Interactive GIS Network & Motion FX -->
+  <div class="hero">
+    <canvas id="net" aria-label="Interactive GIS Radar Grid"></canvas>
+    <div class="wrap">
+      <p class="tag">
+        Full Stack / GIS Systems / Zero-Trust Security
+        <span class="tag-badge">3+ Yrs Exp</span>
+      </p>
+      <h1 id="name" aria-label="Vignesh">VIGNESH.</h1>
+      <p class="sub">
+        I architect <strong>secure field-operations software</strong> and <strong>GIS platforms</strong> that drive telecom networks, map assets, and safeguard enterprise workflows.
+      </p>
+      <div class="btns">
+        <a class="btn p" href="#roadmap">Career & Technical Roadmap</a>
+        <a class="btn" href="#security">Security Architecture</a>
+        <a class="btn" href="mailto:vigneshv0608@gmail.com">Contact Me</a>
+      </div>
+      <div class="into">
+        <span>PostgreSQL & GIS</span>
+        <span>JWT & OAuth2 RBAC</span>
+        <span>OWASP Top 10 Hardened</span>
+        <span>LLMs, RAG & MCP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro Section -->
+  <section id="intro">
+    <div class="wrap two">
+      <div>
+        <p class="n">01 / Philosophy & Approach</p>
+        <h2>Resilient Architecture. Defensible APIs.</h2>
+        <p>
+          I’m Vignesh, a Full Stack Developer in Chennai with over 3 years of hands-on experience designing, building, and deploying mission-critical MERN and PostgreSQL systems.
+        </p>
+        <p>
+          From high-frequency field-tracking tools to <strong>BSNL BharatNet Phase III</strong> & <strong>T-Fiber</strong> independent monitoring platforms, I build solutions where performance, geospatial data, and zero-trust security intersect.
+        </p>
+        <ul class="chips">
+          <li>React.js</li>
+          <li>Node.js / Express</li>
+          <li>PostgreSQL / PostGIS</li>
+          <li>MongoDB</li>
+          <li>Google Maps API</li>
+          <li>Docker</li>
+          <li>AWS EC2 & Nginx</li>
+          <li>Redis Rate Limiting</li>
+        </ul>
+      </div>
+      <div>
+        <pre aria-label="Backend Architecture Code Pattern"><code>// Secure Express API Guard Pattern
+const express = require('express');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+
+const app = express();
+app.use(helmet());
+app.use(rateLimit({ windowMs: 15*60*1000, max: 100 }));
+
+// Parameterized DB Query & RBAC Guard
+app.get('/api/v1/gis/tasks', 
+  authenticateJWT, 
+  requireRole(['ENGINEER', 'AUDITOR']), 
+  async (req, res) => {
+    const { userId } = req.user;
+    const query = `
+      SELECT id, st_asgeojson(location), status 
+      FROM field_tasks 
+      WHERE assigned_to = $1 AND is_active = true;
+    `;
+    const { rows } = await db.query(query, [userId]);
+    res.json({ success: true, data: rows });
+});</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Roadmap Section with Motion Canvas -->
+  <section id="roadmap">
+    <canvas id="roadmapMotion" class="section-motion-bg" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="n">02 / Growth & Vision</p>
+      <h2>Career & Technical Roadmap.</h2>
+      <p style="color:var(--muted); max-width:40em; margin-bottom: 2rem;">
+        Click on any phase below to explore key achievements, technical breakthroughs, and security focus areas across past, present, and future horizons.
+      </p>
+
+      <div class="roadmap-tabs" role="tablist">
+        <button class="rm-tab active" data-filter="all" type="button">All Horizons</button>
+        <button class="rm-tab" data-filter="past" type="button">2021 – 2023: Foundation</button>
+        <button class="rm-tab" data-filter="present" type="button">2023 – 2026: Systems & Security</button>
+        <button class="rm-tab" data-filter="future" type="button">2026+: AI & Agentic GIS</button>
+      </div>
+
+      <div class="roadmap-flow">
+        <!-- Phase 1: Past -->
+        <div class="rm-card open" data-category="past">
+          <div class="rm-header">
+            <span class="rm-phase">PHASE 01 // FOUNDATION & ANALYTICS</span>
+            <span class="rm-badge">2021 – 2023</span>
+          </div>
+          <h3 class="rm-title">Computer Science & Data Modeling</h3>
+          <p class="rm-summary">Mastered core data structures, relational databases, and predictive algorithms at Loyola College and GTN Arts College.</p>
+          <div class="rm-details">
+            <h5>Key Breakthroughs & Projects:</h5>
+            <ul>
+              <li>Graduated with B.Sc. and M.Sc. degrees in Computer Science.</li>
+              <li>Data Analyst Internship at United Techno: built route optimization models using Python, Pandas, and SQL.</li>
+              <li>Laid core mathematical foundation for spatial coordinate transformations and geospatial calculations.</li>
+            </ul>
+            <ul class="chips">
+              <li>Python</li>
+              <li>Pandas</li>
+              <li>SQL</li>
+              <li>Data Structures</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 2: Present -->
+        <div class="rm-card open" data-category="present">
+          <div class="rm-header">
+            <span class="rm-phase">PHASE 02 // WORKFORCE PLATFORMS & SECURITY</span>
+            <span class="rm-badge">2023 – 2026</span>
+          </div>
+          <h3 class="rm-title">Full Stack WFM, GIS & Backend Security</h3>
+          <p class="rm-summary">Architecting production workforce systems for BSNL BharatNet Phase III & T-Fiber with zero-trust API security controls.</p>
+          <div class="rm-details">
+            <h5>Core Engineering Focus:</h5>
+            <ul>
+              <li>Integrated Google Maps API for real-time field tracking, desktop surveys, and passive/active fiber route monitoring.</li>
+              <li>Implemented OWASP Top 10 defenses: JWT token rotation, RBAC isolation, Redis rate limiting, and HMAC webhook verification.</li>
+              <li>Engineered PhonePe payment integrations maintaining 99.9% processing reliability.</li>
+            </ul>
+            <ul class="chips">
+              <li>React.js</li>
+              <li>Node.js</li>
+              <li>PostgreSQL</li>
+              <li>Google Maps API</li>
+              <li class="sec">JWT & RBAC</li>
+              <li class="sec">OWASP Hardened</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 3: Future -->
+        <div class="rm-card future open" data-category="future">
+          <div class="rm-header">
+            <span class="rm-phase">PHASE 03 // FUTURE VISION</span>
+            <span class="rm-badge">2026 &amp; BEYOND</span>
+          </div>
+          <h3 class="rm-title">AI-Driven GIS & Agentic Workflows</h3>
+          <p class="rm-summary">Embedding Large Language Models, RAG, Model Context Protocol (MCP), and automated n8n security audit pipelines.</p>
+          <div class="rm-details">
+            <h5>Strategic Vision:</h5>
+            <ul>
+              <li>Developing LLM-powered RAG systems to query complex technical fiber deployment manuals directly via voice/text.</li>
+              <li>Leveraging Model Context Protocol (MCP) to allow AI agents to safely perform GIS task assignment and route re-calculation.</li>
+              <li>Automating continuous n8n security audits, automated threat monitoring, and container vulnerability scanning.</li>
+            </ul>
+            <ul class="chips">
+              <li>LLMs & RAG</li>
+              <li>Model Context Protocol (MCP)</li>
+              <li>n8n Automation</li>
+              <li>PostGIS 3D Spatial</li>
+              <li class="sec">AI Security Auditing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security & System Architecture Section (Expanded) -->
+  <section id="security">
+    <div class="wrap">
+      <p class="n">03 / System Reliability & Data Protection</p>
+      <h2>Backend Security Built In by Default.</h2>
+      <p style="color:var(--muted); max-width:40em; margin-bottom: 2rem;">
+        Enterprise field systems handle sensitive geospatial, financial, and user access data. Here is how I protect APIs and databases against modern security threats:
+      </p>
+
+      <div class="sec-grid">
+        <div class="sec-card">
+          <div class="icon">01</div>
+          <h4>Auth & Token Rotation</h4>
+          <p>Short-lived JWT access tokens backed by HTTP-only refresh cookies with Redis blacklist revocation for instant session termination.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">02</div>
+          <h4>Granular RBAC & ABAC</h4>
+          <p>Role-Based and Attribute-Based Access Control isolating multi-tenant workforce data across admin, field engineer, and auditor tiers.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">03</div>
+          <h4>SQL Injection Immunity</h4>
+          <p>100% prepared parameterized queries in PostgreSQL/MySQL using safe ORMs/query builders to eliminate SQL injection vulnerabilities.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">04</div>
+          <h4>HTTP & Header Hardening</h4>
+          <p>Helmet.js integration enforcing Content Security Policy (CSP), HSTS headers, CORS origin whitelisting, and X-Content-Type-Options.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">05</div>
+          <h4>Rate Limiting & DDoS Defense</h4>
+          <p>Redis-backed IP rate limiters on public and auth endpoints (express-rate-limit) to mitigate brute-force and credential stuffing attacks.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">06</div>
+          <h4>Payment Webhook Integrity</h4>
+          <p>HMAC-SHA256 signature verification for PhonePe webhooks with strict idempotency key checks to prevent replay attacks and double-processing.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">07</div>
+          <h4>AES-256 Encryption</h4>
+          <p>Field data encrypted in transit with TLS 1.3 and at rest using AES-256 for PII, location logs, and financial transaction histories.</p>
+        </div>
+
+        <div class="sec-card">
+          <div class="icon">08</div>
+          <h4>Automated n8n Auditing</h4>
+          <p>Automated n8n security workflows scanning server logs, alerting on suspicious API failures, and monitoring uptime continuously.</p>
+        </div>
+      </div>
+
+      <ul class="chips" style="margin-top: 2rem;">
+        <li class="sec">JWT Token Rotation</li>
+        <li class="sec">OAuth 2.0 / OIDC</li>
+        <li class="sec">Helmet.js CSP</li>
+        <li class="sec">Redis Rate Limiting</li>
+        <li class="sec">RBAC Isolation</li>
+        <li class="sec">AES-256 Encryption</li>
+        <li class="sec">HMAC-SHA256 Signatures</li>
+        <li class="sec">n8n Audit Workflows</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Work & Projects Section -->
+  <section id="work">
+    <div class="wrap">
+      <p class="n">04 / Key Deliverables</p>
+      <h2>Field Tested. Production Ready.</h2>
+
+      <article class="proj">
+        <div class="k">01 / WFM Platform</div>
+        <div>
+          <h3>Workforce Management & GIS Audit Platform</h3>
+          <p><strong>Radiustek Project India</strong> (2025 – Present). Enterprise platform powering Independent Engineer operations for BSNL BharatNet Phase III and T-Fiber projects.</p>
+          <ul>
+            <li>Customized Active and Passive Network Task Execution workflows for field engineers and QA auditors.</li>
+            <li>Interactive GIS Task & Desktop Survey modules integrating Google Maps API and spatial data rendering.</li>
+            <li>Enforced strict RBAC access controls preventing cross-zone data leakage across multiple fiber sub-contractors.</li>
+            <li>Hardened REST APIs on AWS EC2 with Nginx reverse proxy, SSL termination, and rate limiting.</li>
+          </ul>
+          <ul class="chips">
+            <li>React.js</li>
+            <li>Node.js</li>
+            <li>PostgreSQL</li>
+            <li>Google Maps API</li>
+            <li class="sec">RBAC Isolation</li>
+            <li class="sec">Nginx Hardening</li>
+          </ul>
+          <p style="margin-top:1rem;">
+            <a class="l" href="https://tfiber.pmtoolrpipl.in/" target="_blank" rel="noopener">T-Fiber Live System ↗</a>
+            <a class="l" href="https://rt.pmtoolrpipl.in/" target="_blank" rel="noopener">Radiustek PM Tool ↗</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="k">02 / Tracking</div>
+        <div>
+          <h3>Employee Geolocation & Secure Task Tracking</h3>
+          <p><strong>Access Computer Data Corp</strong> (2023 – 2025). Task dispatch, real-time location monitoring, and payment collection platform.</p>
+          <ul>
+            <li>Engineered live GPS location tracking and route playback using Google Maps JavaScript API and optimized webhooks.</li>
+            <li>Integrated PhonePe Payment Gateway with HMAC signature validation and automated transaction auditing maintaining 99.9% uptime.</li>
+            <li>Secured sensitive mobile token auth mechanisms against session interception in low-connectivity field areas.</li>
+          </ul>
+          <ul class="chips">
+            <li>React.js</li>
+            <li>Express.js</li>
+            <li>MySQL</li>
+            <li>PhonePe API</li>
+            <li class="sec">HMAC Verification</li>
+            <li class="sec">AES Encryption</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="k">03 / Logistics</div>
+        <div>
+          <h3>Sales Demand Forecasting & Route Optimization</h3>
+          <p><strong>United Techno</strong> (Internship, 2023). Data modeling and delivery optimization suite for supply chain management.</p>
+          <ul>
+            <li>Cleaned multi-source logistics dataset and built demand forecasting pipelines using Python and Pandas.</li>
+            <li>Designed SQL views and Power BI dashboards to track delivery route efficiency and latency bottlenecks.</li>
+          </ul>
+          <ul class="chips">
+            <li>Python</li>
+            <li>Pandas</li>
+            <li>SQL</li>
+            <li>Power BI</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section id="experience">
+    <div class="wrap">
+      <p class="n">05 / Career Path</p>
+      <h2>Proven Experience & Growth.</h2>
+      <ol class="tl">
+        <li>
+          <span class="w">Apr 2025 – Present</span>
+          <div>
+            <h3>MERN Stack & GIS Developer — Radiustek Project India</h3>
+            <p>Building high-concurrency WFM platforms, GIS mapping modules, REST APIs, and pioneering early LLM / RAG search integrations for technical documentation.</p>
+          </div>
+        </li>
+        <li>
+          <span class="w">Jul 2023 – Mar 2025</span>
+          <div>
+            <h3>Junior Developer — Access Computer Data Corp</h3>
+            <p>Developed real-time location tracking services, payment processing pipelines, and SQL database migrations.</p>
+          </div>
+        </li>
+        <li>
+          <span class="w">Jan 2023 – Apr 2023</span>
+          <div>
+            <h3>Data Analyst Intern — United Techno</h3>
+            <p>Analyzed route efficiency, built predictive algorithms, and formatted business intelligence reporting.</p>
+          </div>
+        </li>
+        <li>
+          <span class="w">2018 – 2023</span>
+          <div>
+            <h3>B.Sc. & M.Sc. Computer Science</h3>
+            <p>Graduated from GTN Arts College, Dindigul (B.Sc.) and Loyola College, Chennai (M.Sc.). Focused on data structures, software engineering, and database management.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="contact" class="cta">
+    <div class="wrap">
+      <p class="n">06 / Get In Touch</p>
+      <h2>Let’s Build Secure, High-Impact Systems.</h2>
+      <p style="max-width:34em; color:var(--muted)">
+        I’m open to full-stack, backend, or GIS system engineering roles in Chennai or remotely. Whether you need a robust WFM tool or a hardened API infrastructure, feel free to reach out.
+      </p>
+      <div class="btns" style="margin-top: 1.6rem;">
+        <a class="btn p" href="mailto:vigneshv0608@gmail.com">vigneshv0608@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/vignesh-v-ab00b6273" target="_blank" rel="noopener">LinkedIn Profile ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>vm_sec / Build securely &amp; thoughtfully.</span>
+    <span>© 2026 Vignesh</span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var d = document.documentElement;
+  var rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  d.classList.add("js");
+
+  // Title character animation
+  var h = document.getElementById("name");
+  if (h) {
+    h.innerHTML = h.textContent.split("").map(function(c, i) {
+      return '<span class="c" aria-hidden="true" style="--i:' + i + '">' + c + '</span>';
+    }).join("");
+  }
+
+  // Intersection Observer for scroll reveal
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var t = e.target;
+        t.classList.add("in");
+        io.unobserve(t);
+        setTimeout(function() { t.classList.remove("rv"); }, 800);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll("section .n, section h2, .proj, .tl li, .sec-card").forEach(function(el) {
+    el.classList.add("rv");
+    io.observe(el);
+  });
+
+  // Dark / Light Theme Toggle
+  document.getElementById("tgl").addEventListener("click", function() {
+    var dark = d.dataset.theme ? d.dataset.theme === "dark" : !matchMedia("(prefers-color-scheme: light)").matches;
+    d.dataset.theme = dark ? "light" : "dark";
+  });
+
+  // Roadmap Filtering & Toggle Interactions
+  var tabs = document.querySelectorAll(".rm-tab");
+  var cards = document.querySelectorAll(".rm-card");
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", function() {
+      tabs.forEach(function(t) { t.classList.remove("active"); });
+      tab.classList.add("active");
+
+      var filter = tab.dataset.filter;
+      cards.forEach(function(card) {
+        if (filter === "all" || card.dataset.category === filter) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+
+  cards.forEach(function(card) {
+    card.addEventListener("click", function() {
+      card.classList.toggle("open");
+    });
+  });
+
+  // 1. Hero Canvas: Interactive GIS Radar Network with Hover Rings & Motion Nodes
+  var cv = document.getElementById("net"), cx = cv.getContext("2d");
+  var W, H, nodes = [], mx = -999, my = -999;
+  var pulseRadius = 0;
+
+  function sizeHero() {
+    var b = cv.getBoundingClientRect(), r = window.devicePixelRatio || 1;
+    W = b.width;
+    H = b.height;
+    cv.width = W * r;
+    cv.height = H * r;
+    cx.setTransform(r, 0, 0, r, 0, 0);
+  }
+
+  function initHero() {
+    sizeHero();
+    nodes = [];
+    var count = Math.round((W * H) / 14000);
+    for (var i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45
+      });
+    }
+  }
+
+  function getAccentColor() {
+    return getComputedStyle(d).getPropertyValue("--accent").trim() || "#6ea8ff";
+  }
+  function getSecAccentColor() {
+    return getComputedStyle(d).getPropertyValue("--sec-accent").trim() || "#34d399";
+  }
+
+  function drawHero() {
+    cx.clearRect(0, 0, W, H);
+    var mainColor = getAccentColor();
+    var secColor = getSecAccentColor();
+
+    pulseRadius = (pulseRadius + 0.35) % 30;
+
+    cx.fillStyle = mainColor;
+    cx.strokeStyle = mainColor;
+
+    for (var i = 0; i < nodes.length; i++) {
+      var a = nodes[i];
+
+      if (!rm) {
+        a.x += a.vx;
+        a.y += a.vy;
+        if (a.x < 0 || a.x > W) a.vx *= -1;
+        if (a.y < 0 || a.y > H) a.vy *= -1;
+      }
+
+      cx.globalAlpha = 0.55;
+      cx.beginPath();
+      cx.arc(a.x, a.y, 2.2, 0, Math.PI * 2);
+      cx.fill();
+
+      for (var j = i + 1; j < nodes.length; j++) {
+        var b = nodes[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var distSq = dx * dx + dy * dy;
+
+        if (distSq < 15000) {
+          cx.globalAlpha = 0.22 * (1 - distSq / 15000);
+          cx.beginPath();
+          cx.moveTo(a.x, a.y);
+          cx.lineTo(b.x, b.y);
+          cx.stroke();
+        }
+      }
+
+      var ex = a.x - mx, ey = a.y - my;
+      var cursorDistSq = ex * ex + ey * ey;
+
+      if (cursorDistSq < 22000) {
+        cx.globalAlpha = 0.5;
+        cx.beginPath();
+        cx.moveTo(a.x, a.y);
+        cx.lineTo(mx, my);
+        cx.stroke();
+
+        cx.save();
+        cx.strokeStyle = secColor;
+        cx.globalAlpha = Math.max(0, 0.45 - pulseRadius / 30);
+        cx.beginPath();
+        cx.arc(a.x, a.y, pulseRadius, 0, Math.PI * 2);
+        cx.stroke();
+        cx.restore();
+      }
+    }
+
+    if (!rm) requestAnimationFrame(drawHero);
+  }
+
+  initHero();
+  drawHero();
+
+  // 2. Roadmap Background Canvas: Animated Particle Grid & Light Pulses
+  var rmCv = document.getElementById("roadmapMotion"), rmCx = rmCv.getContext("2d");
+  var rmW, rmH, rmParticles = [];
+
+  function sizeRmCanvas() {
+    var parent = rmCv.parentElement;
+    var b = parent.getBoundingClientRect(), r = window.devicePixelRatio || 1;
+    rmW = b.width;
+    rmH = b.height;
+    rmCv.width = rmW * r;
+    rmCv.height = rmH * r;
+    rmCx.setTransform(r, 0, 0, r, 0, 0);
+  }
+
+  function initRmCanvas() {
+    sizeRmCanvas();
+    rmParticles = [];
+    for (var i = 0; i < 35; i++) {
+      rmParticles.push({
+        x: Math.random() * rmW,
+        y: Math.random() * rmH,
+        r: Math.random() * 2 + 1,
+        speed: Math.random() * 0.3 + 0.1
+      });
+    }
+  }
+
+  function drawRmCanvas() {
+    rmCx.clearRect(0, 0, rmW, rmH);
+    var color = getAccentColor();
+    rmCx.fillStyle = color;
+
+    for (var i = 0; i < rmParticles.length; i++) {
+      var p = rmParticles[i];
+      if (!rm) {
+        p.y -= p.speed;
+        if (p.y < 0) p.y = rmH;
+      }
+      rmCx.globalAlpha = 0.15;
+      rmCx.beginPath();
+      rmCx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      rmCx.fill();
+    }
+
+    if (!rm) requestAnimationFrame(drawRmCanvas);
+  }
+
+  initRmCanvas();
+  drawRmCanvas();
+
+  window.addEventListener("resize", function() {
+    initHero();
+    initRmCanvas();
+    if (rm) { drawHero(); drawRmCanvas(); }
+  });
+
+  cv.addEventListener("pointermove", function(e) {
+    var b = cv.getBoundingClientRect();
+    mx = e.clientX - b.left;
+    my = e.clientY - b.top;
+  });
+
+  cv.addEventListener("pointerleave", function() {
+    mx = my = -999;
+  });
+})();
+</script>
+</body>
+</html>
